@@ -1,5 +1,5 @@
-from sqlalchemy import create_engine, Column, String, Boolean, ForeignKey, inspect
-from sqlalchemy.orm import declarative_base, sessionmaker, relationship
+from sqlalchemy import Boolean, Column, ForeignKey, String, create_engine, inspect
+from sqlalchemy.orm import declarative_base, relationship, sessionmaker
 
 engine = create_engine("sqlite:///blur_application.db")
 Session = sessionmaker(bind=engine)

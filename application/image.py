@@ -1,7 +1,8 @@
 import os
 import uuid
-from typing import List, Tuple
 from io import BytesIO
+from typing import List, Tuple
+
 from PIL import Image, ImageFilter
 
 
@@ -17,9 +18,12 @@ def process_images(images: List) -> Tuple[List, str]:
         buf = BytesIO(image.read())
         image_buffers.append(buf)
 
-    dir_name = os.path.join('orders', str(uuid.uuid4()))
+    dir_name = os.path.join("orders", str(uuid.uuid4()))
     os.makedirs(dir_name, exist_ok=True)
-    image_data = [(image_buf.getvalue(), image.filename, dir_name) for image_buf, image in zip(image_buffers, images)]
+    image_data = [
+        (image_buf.getvalue(), image.filename, dir_name)
+        for image_buf, image in zip(image_buffers, images)
+    ]
     return image_data, dir_name
 
 
@@ -32,5 +36,5 @@ def blur_image(image_bytes: bytes, image_name: str, path: str) -> None:
         img.load()
         new_img = img.filter(ImageFilter.GaussianBlur(5))
 
-        with open(f"{path}/blur_{image_name}", 'wb') as output:
+        with open(f"{path}/blur_{image_name}", "wb") as output:
             new_img.save(output)

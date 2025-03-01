@@ -1,15 +1,13 @@
 import celery
+from archive import create_archive
 from celery import Celery, group
 from celery.schedules import crontab
 from image import blur_image
 from mail import send_email_for_subscriber
-from archive import create_archive
-from models import session, User
+from models import User, session
 
 celery_app = Celery(
-    "celery_app",
-    broker="redis://localhost:6379/0",
-    backend="redis://localhost:6379/0"
+    "celery_app", broker="redis://localhost:6379/0", backend="redis://localhost:6379/0"
 )
 celery_app.conf.beat_max_loop_interval = 60
 
@@ -44,7 +42,8 @@ def send_email_for_subscriber_task(receiver: str):
 def send_email_for_all_subscribers_task():
     """Отправляет рассылку всем подписчикам"""
     try:
-        emails = session.query(User.email).filter(User.subscription == True).all()
+        emails = session.query(User.email).filter(User.subscription is True).all()
+
         print(f"Found emails: {list(emails)}")
         task_group = group(
             send_email_for_subscriber_task.s(email[0]) for email in emails
