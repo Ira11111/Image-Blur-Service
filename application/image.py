@@ -19,8 +19,6 @@ def process_images(images: List) -> Tuple[List, str]:
 
     dir_name = os.path.join('orders', str(uuid.uuid4()))
     os.makedirs(dir_name, exist_ok=True)
-    print(dir_name)
-    print(type(dir_name))
     image_data = [(image_buf.getvalue(), image.filename, dir_name) for image_buf, image in zip(image_buffers, images)]
     return image_data, dir_name
 

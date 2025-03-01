@@ -1,5 +1,5 @@
 import celery
-from tasks import celery_app, process_image_task, send_email_for_subscriber_task
+from tasks import celery_app, process_image_task, create_archive_task
 from email_validator import EmailNotValidError, validate_email
 from flask import Flask, jsonify, request, url_for
 from models import Order, User, session
@@ -21,7 +21,6 @@ def blur_images():
         return jsonify({"errors": "Email is not valid"}), 400
 
     images = request.files.getlist("images")
-    print(type(images[0]))
     if images is None:
         return jsonify({"errors": "There are no images to process"}), 400
 
@@ -76,12 +75,15 @@ def send_images_to_email(group_id):
         if not result.ready():
             return jsonify({"error": "group not completed"}), 404
         else:
-            print("API EMAIL")
             email, dir_name = session.query(Order.user_email, Order.directory).filter(Order.order_id == group_id).one()
-            zip_file = create_archive(f"./{dir_name}")
-            print("S1")
+
+            res = create_archive_task.delay(f"./{dir_name}")
+            zip_file = res.get()
+
+            if zip_file is None:
+                return "Files not found", 404
+
             send_email(order_id=group_id, receiver=email, zip_file=zip_file)
-            print("S2")
             return "Email is sent", 200
 
 
