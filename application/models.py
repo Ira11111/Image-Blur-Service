@@ -1,7 +1,8 @@
+from config import DB_PATH
 from sqlalchemy import Boolean, Column, ForeignKey, String, create_engine, inspect
 from sqlalchemy.orm import declarative_base, relationship, sessionmaker
 
-engine = create_engine("sqlite:///blur_application.db")
+engine = create_engine(DB_PATH)
 Session = sessionmaker(bind=engine)
 session = Session()
 
