@@ -1,0 +1,43 @@
+Run started:2025-10-30 15:45:47.556186
+Files in scope (10):
+	application/__init__.py (score: {SEVERITY: 0, CONFIDENCE: 0})
+	application/app.py (score: {SEVERITY: 0, CONFIDENCE: 0})
+	application/archive.py (score: {SEVERITY: 0, CONFIDENCE: 0})
+	application/bad.py (score: {SEVERITY: 5, CONFIDENCE: 3})
+	application/config.py (score: {SEVERITY: 0, CONFIDENCE: 0})
+	application/image.py (score: {SEVERITY: 0, CONFIDENCE: 0})
+	application/mail.py (score: {SEVERITY: 0, CONFIDENCE: 0})
+	application/models.py (score: {SEVERITY: 0, CONFIDENCE: 0})
+	application/routes.py (score: {SEVERITY: 0, CONFIDENCE: 0})
+	application/tasks.py (score: {SEVERITY: 0, CONFIDENCE: 0})
+Files excluded (0):
+
+Test results:
+>> Issue: [B608:hardcoded_sql_expressions] Possible SQL injection vector through string-based query construction.
+   Severity: Medium   Confidence: Low
+   CWE: CWE-89 (https://cwe.mitre.org/data/definitions/89.html)
+   More Info: https://bandit.readthedocs.io/en/1.8.6/plugins/b608_hardcoded_sql_expressions.html
+   Location: application/bad.py:2:14
+1	def sql_injection(user_id, db):
+2	    query = f"SELECT * FROM users WHERE id = {user_id}"  # SQL injection
+3	    return db.execute(query)
+
+--------------------------------------------------
+
+Code scanned:
+	Total lines of code: 289
+	Total lines skipped (#nosec): 0
+	Total potential issues skipped due to specifically being disabled (e.g., #nosec BXXX): 0
+
+Run metrics:
+	Total issues (by severity):
+		Undefined: 0
+		Low: 0
+		Medium: 1
+		High: 0
+	Total issues (by confidence):
+		Undefined: 0
+		Low: 1
+		Medium: 0
+		High: 0
+Files skipped (0):
