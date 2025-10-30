@@ -1,0 +1,206 @@
+************* Module application.tasks
+application/tasks.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+application/tasks.py:2:0: E0401: Unable to import 'archive' (import-error)
+application/tasks.py:5:0: E0401: Unable to import 'image' (import-error)
+application/tasks.py:6:0: E0401: Unable to import 'mail' (import-error)
+application/tasks.py:7:0: E0401: Unable to import 'models' (import-error)
+application/tasks.py:20:11: W0718: Catching too general exception Exception (broad-exception-caught)
+application/tasks.py:16:0: R1710: Either all return statements in a function should return an expression, or none of them should. (inconsistent-return-statements)
+application/tasks.py:27:0: C0116: Missing function or method docstring (missing-function-docstring)
+application/tasks.py:37:11: W0718: Catching too general exception Exception (broad-exception-caught)
+application/tasks.py:52:11: W0718: Catching too general exception Exception (broad-exception-caught)
+application/tasks.py:59:0: W0613: Unused argument 'kwargs' (unused-argument)
+************* Module application.archive
+application/archive.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+application/archive.py:5:0: W0105: String statement has no effect (pointless-string-statement)
+application/archive.py:10:0: C0116: Missing function or method docstring (missing-function-docstring)
+application/archive.py:10:0: R1710: Either all return statements in a function should return an expression, or none of them should. (inconsistent-return-statements)
+************* Module application.app
+application/app.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+application/app.py:3:0: E0401: Unable to import 'models' (import-error)
+application/app.py:4:0: E0401: Unable to import 'routes' (import-error)
+************* Module application.models
+application/models.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+application/models.py:1:0: E0401: Unable to import 'config' (import-error)
+application/models.py:6:0: C0103: Constant name "Session" doesn't conform to UPPER_CASE naming style (invalid-name)
+application/models.py:12:0: C0115: Missing class docstring (missing-class-docstring)
+application/models.py:12:0: R0903: Too few public methods (0/2) (too-few-public-methods)
+application/models.py:19:0: C0115: Missing class docstring (missing-class-docstring)
+application/models.py:19:0: R0903: Too few public methods (0/2) (too-few-public-methods)
+application/models.py:28:0: C0116: Missing function or method docstring (missing-function-docstring)
+************* Module application.config
+application/config.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+application/config.py:6:4: R1722: Consider using 'sys.exit' instead (consider-using-sys-exit)
+************* Module application.image
+application/image.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+************* Module application.routes
+application/routes.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+application/routes.py:4:0: E0401: Unable to import 'image' (import-error)
+application/routes.py:5:0: E0401: Unable to import 'mail' (import-error)
+application/routes.py:6:0: E0401: Unable to import 'models' (import-error)
+application/routes.py:8:0: E0401: Unable to import 'tasks' (import-error)
+application/routes.py:14:0: C0116: Missing function or method docstring (missing-function-docstring)
+application/routes.py:59:0: C0116: Missing function or method docstring (missing-function-docstring)
+application/routes.py:62:4: R1705: Unnecessary "else" after "return", remove the "else" and de-indent the code inside it (no-else-return)
+application/routes.py:72:0: C0116: Missing function or method docstring (missing-function-docstring)
+application/routes.py:75:4: R1705: Unnecessary "else" after "return", remove the "else" and de-indent the code inside it (no-else-return)
+application/routes.py:78:8: R1705: Unnecessary "else" after "return", remove the "else" and de-indent the code inside it (no-else-return)
+application/routes.py:98:0: C0116: Missing function or method docstring (missing-function-docstring)
+application/routes.py:116:0: C0116: Missing function or method docstring (missing-function-docstring)
+application/routes.py:124:4: R1705: Unnecessary "else" after "return", remove the "else" and de-indent the code inside it (no-else-return)
+************* Module application.mail
+application/mail.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+application/mail.py:7:0: E0401: Unable to import 'config' (import-error)
+
+
+Report
+======
+218 statements analysed.
+
+Statistics by type
+------------------
+
++---------+-------+-----------+-----------+------------+---------+
+|type     |number |old number |difference |%documented |%badname |
++=========+=======+===========+===========+============+=========+
+|module   |9      |9          |=          |11.11       |0.00     |
++---------+-------+-----------+-----------+------------+---------+
+|class    |2      |2          |=          |0.00        |0.00     |
++---------+-------+-----------+-----------+------------+---------+
+|method   |0      |NC         |NC         |0           |0        |
++---------+-------+-----------+-----------+------------+---------+
+|function |16     |16         |=          |50.00       |0.00     |
++---------+-------+-----------+-----------+------------+---------+
+
+
+
+External dependencies
+---------------------
+::
+
+    PIL 
+      \-Image (application.image)
+      \-ImageFilter (application.image)
+    celery (application.routes,application.tasks)
+      \-schedules (application.tasks)
+    dotenv (application.config)
+    email_validator (application.routes)
+      \-validate_email (application.routes)
+    flask (application.routes)
+    sqlalchemy (application.models)
+      \-exc (application.routes)
+      \-orm (application.models)
+
+
+
+379 lines have been analyzed
+
+Raw metrics
+-----------
+
++----------+-------+------+---------+-----------+
+|type      |number |%     |previous |difference |
++==========+=======+======+=========+===========+
+|code      |275    |72.56 |275      |=          |
++----------+-------+------+---------+-----------+
+|docstring |27     |7.12  |27       |=          |
++----------+-------+------+---------+-----------+
+|comment   |0      |0.00  |NC       |NC         |
++----------+-------+------+---------+-----------+
+|empty     |77     |20.32 |77       |=          |
++----------+-------+------+---------+-----------+
+
+
+
+Duplication
+-----------
+
++-------------------------+------+---------+-----------+
+|                         |now   |previous |difference |
++=========================+======+=========+===========+
+|nb duplicated lines      |0     |0        |0          |
++-------------------------+------+---------+-----------+
+|percent duplicated lines |0.000 |0.000    |=          |
++-------------------------+------+---------+-----------+
+
+
+
+Messages by category
+--------------------
+
++-----------+-------+---------+-----------+
+|type       |number |previous |difference |
++===========+=======+=========+===========+
+|convention |19     |19       |19         |
++-----------+-------+---------+-----------+
+|refactor   |9      |9        |9          |
++-----------+-------+---------+-----------+
+|warning    |5      |5        |5          |
++-----------+-------+---------+-----------+
+|error      |12     |12       |12         |
++-----------+-------+---------+-----------+
+
+
+
+% errors / warnings by module
+-----------------------------
+
++--------------------+------+--------+---------+-----------+
+|module              |error |warning |refactor |convention |
++====================+======+========+=========+===========+
+|application.tasks   |33.33 |80.00   |11.11    |10.53      |
++--------------------+------+--------+---------+-----------+
+|application.routes  |33.33 |0.00    |44.44    |31.58      |
++--------------------+------+--------+---------+-----------+
+|application.app     |16.67 |0.00    |0.00     |5.26       |
++--------------------+------+--------+---------+-----------+
+|application.models  |8.33  |0.00    |22.22    |26.32      |
++--------------------+------+--------+---------+-----------+
+|application.mail    |8.33  |0.00    |0.00     |5.26       |
++--------------------+------+--------+---------+-----------+
+|application.archive |0.00  |20.00   |11.11    |10.53      |
++--------------------+------+--------+---------+-----------+
+|application.config  |0.00  |0.00    |11.11    |5.26       |
++--------------------+------+--------+---------+-----------+
+|application.image   |0.00  |0.00    |0.00     |5.26       |
++--------------------+------+--------+---------+-----------+
+
+
+
+Messages
+--------
+
++-------------------------------+------------+
+|message id                     |occurrences |
++===============================+============+
+|import-error                   |12          |
++-------------------------------+------------+
+|missing-module-docstring       |8           |
++-------------------------------+------------+
+|missing-function-docstring     |8           |
++-------------------------------+------------+
+|no-else-return                 |4           |
++-------------------------------+------------+
+|broad-exception-caught         |3           |
++-------------------------------+------------+
+|too-few-public-methods         |2           |
++-------------------------------+------------+
+|missing-class-docstring        |2           |
++-------------------------------+------------+
+|inconsistent-return-statements |2           |
++-------------------------------+------------+
+|unused-argument                |1           |
++-------------------------------+------------+
+|pointless-string-statement     |1           |
++-------------------------------+------------+
+|invalid-name                   |1           |
++-------------------------------+------------+
+|consider-using-sys-exit        |1           |
++-------------------------------+------------+
+
+
+
+
+------------------------------------------------------------------
+Your code has been rated at 5.73/10 (previous run: 5.73/10, +0.00)
+

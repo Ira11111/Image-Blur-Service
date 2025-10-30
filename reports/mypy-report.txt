@@ -1,0 +1,164 @@
+application/tasks.py:1: error: Skipping analyzing "celery": module is
+installed, but missing library stubs or py.typed marker  [import-untyped]
+    import celery
+    ^
+application/tasks.py:2: error: Cannot find implementation or library stub for
+module named "archive"  [import-not-found]
+    from archive import create_archive
+    ^
+application/tasks.py:4: error: Skipping analyzing "celery.schedules": module is
+installed, but missing library stubs or py.typed marker  [import-untyped]
+    from celery.schedules import crontab
+    ^
+application/tasks.py:5: error: Cannot find implementation or library stub for
+module named "image"  [import-not-found]
+    from image import blur_image
+    ^
+application/tasks.py:6: error: Cannot find implementation or library stub for
+module named "mail"  [import-not-found]
+    from mail import send_email_for_subscriber
+    ^
+application/tasks.py:7: error: Cannot find implementation or library stub for
+module named "models"  [import-not-found]
+    from models import User, session
+    ^
+application/tasks.py:15: error: Untyped decorator makes function
+"process_image_task" untyped  [misc]
+    @celery_app.task
+     ^~~~~~~~~~~~~~~
+application/tasks.py:16: error: Function is missing a return type annotation 
+[no-untyped-def]
+    def process_image_task(image_buf: bytes, image_name: str, dir_name: st...
+    ^
+application/tasks.py:26: error: Untyped decorator makes function
+"create_archive_task" untyped  [misc]
+    @celery_app.task
+     ^~~~~~~~~~~~~~~
+application/tasks.py:27: error: Function is missing a return type annotation 
+[no-untyped-def]
+    def create_archive_task(path: str):
+    ^
+application/tasks.py:31: error: Untyped decorator makes function
+"send_email_for_subscriber_task" untyped  [misc]
+    @celery_app.task
+     ^~~~~~~~~~~~~~~
+application/tasks.py:32: error: Function is missing a return type annotation 
+[no-untyped-def]
+    def send_email_for_subscriber_task(receiver: str):
+    ^
+application/tasks.py:42: error: Function is missing a return type annotation 
+[no-untyped-def]
+    def send_email_for_all_subscribers_task():
+    ^
+application/tasks.py:42: note: Use "-> None" if function does not return a value
+application/tasks.py:59: error: Function is missing a type annotation 
+[no-untyped-def]
+    def setup_mailing_for_subscribers(sender, **kwargs):
+    ^
+application/app.py:3: error: Cannot find implementation or library stub for
+module named "models"  [import-not-found]
+    from models import create_db
+    ^
+application/app.py:3: note: See https://mypy.readthedocs.io/en/stable/running_mypy.html#missing-imports
+application/app.py:4: error: Cannot find implementation or library stub for
+module named "routes"  [import-not-found]
+    from routes import app
+    ^
+application/mail.py:7: error: Cannot find implementation or library stub for
+module named "config"  [import-not-found]
+    from config import SMTP_HOST, SMTP_PASSWORD, SMTP_PORT, SMTP_USER
+    ^
+application/mail.py:10: error: Function is missing a return type annotation 
+[no-untyped-def]
+    def send_email(order_id: str, receiver: str, zip_file: bytes):
+    ^
+application/mail.py:39: error: Function is missing a return type annotation 
+[no-untyped-def]
+    def send_email_for_subscriber(receiver: str):
+    ^
+application/archive.py:10: error: Function is missing a type annotation 
+[no-untyped-def]
+    def create_archive(path):
+    ^
+application/image.py:9: error: Missing type parameters for generic type "List" 
+[type-arg]
+    def process_images(images: List) -> Tuple[List, str]:
+                               ^
+application/models.py:1: error: Cannot find implementation or library stub for
+module named "config"  [import-not-found]
+    from config import DB_PATH
+    ^
+application/models.py:12: error: Variable "application.models.Base" is not
+valid as a type  [valid-type]
+    class User(Base):
+               ^
+application/models.py:12: note: See https://mypy.readthedocs.io/en/stable/common_issues.html#variables-vs-type-aliases
+application/models.py:12: error: Invalid base class "Base"  [misc]
+    class User(Base):
+               ^~~~
+application/models.py:19: error: Variable "application.models.Base" is not
+valid as a type  [valid-type]
+    class Order(Base):
+                ^
+application/models.py:19: note: See https://mypy.readthedocs.io/en/stable/common_issues.html#variables-vs-type-aliases
+application/models.py:19: error: Invalid base class "Base"  [misc]
+    class Order(Base):
+                ^~~~
+application/models.py:28: error: Function is missing a return type annotation 
+[no-untyped-def]
+    def create_db():
+    ^
+application/models.py:28: note: Use "-> None" if function does not return a value
+application/routes.py:1: error: Skipping analyzing "celery": module is
+installed, but missing library stubs or py.typed marker  [import-untyped]
+    import celery
+    ^
+application/routes.py:4: error: Cannot find implementation or library stub for
+module named "image"  [import-not-found]
+    from image import process_images
+    ^
+application/routes.py:5: error: Cannot find implementation or library stub for
+module named "mail"  [import-not-found]
+    from mail import send_email
+    ^
+application/routes.py:6: error: Cannot find implementation or library stub for
+module named "models"  [import-not-found]
+    from models import Order, User, session
+    ^
+application/routes.py:8: error: Cannot find implementation or library stub for
+module named "tasks"  [import-not-found]
+    from tasks import celery_app, create_archive_task, process_image_task
+    ^
+application/routes.py:14: error: Function is missing a return type annotation 
+[no-untyped-def]
+    def blur_images():
+    ^
+application/routes.py:17: error: Argument 1 to "validate_email" has
+incompatible type "str | None"; expected "str | bytes"  [arg-type]
+            validate_email(email)
+                           ^~~~~
+application/routes.py:59: error: Function is missing a type annotation 
+[no-untyped-def]
+    def get_group_status(group_id):
+    ^
+application/routes.py:72: error: Function is missing a type annotation 
+[no-untyped-def]
+    def send_images_to_email(group_id):
+    ^
+application/routes.py:98: error: Function is missing a return type annotation 
+[no-untyped-def]
+    def subscribe():
+    ^
+application/routes.py:101: error: Argument 1 to "validate_email" has
+incompatible type "str | None"; expected "str | bytes"  [arg-type]
+            validate_email(email)
+                           ^~~~~
+application/routes.py:116: error: Function is missing a return type annotation 
+[no-untyped-def]
+    def unsubscribe():
+    ^
+application/routes.py:119: error: Argument 1 to "validate_email" has
+incompatible type "str | None"; expected "str | bytes"  [arg-type]
+            validate_email(email)
+                           ^~~~~
+Found 40 errors in 7 files (checked 9 source files)
